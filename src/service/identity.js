@@ -189,6 +189,18 @@ export const getAuthStatus = async () => {
   return res;
 };
 
+export const getBalance = async ({ network, address }) => {
+  try {
+    console.log(ENV);
+    const res = await request.get(
+      `${ENV.cryptodata.url}/${network}/balance/${address}`,
+    );
+    res.data.balance;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
 export default {
   getSettings,
   getOtpSettings,
@@ -196,6 +208,7 @@ export default {
   getAccounts,
   getAuthStatus,
   getAccountInfo,
+  getBalance,
   getAccountWithInfo,
   getAuthPermission,
   setAuthPermission,

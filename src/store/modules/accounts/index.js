@@ -7,6 +7,7 @@ const state = {
   authParams: null,
   otpEmail: null,
   accounts: [],
+  balance: null,
   settings: null,
   recoveryIdentifier: null,
   isAuthorized: false,

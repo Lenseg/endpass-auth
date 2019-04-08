@@ -226,6 +226,20 @@ const getAccount = async (ctx, address) => {
   return res;
 };
 
+const getBalance = async ({ state, commit }) => {
+  console.log(state);
+  try {
+    const res = await identityService.getBalance(
+      state.settings.net,
+      state.settings.lastActiveAccount,
+    );
+    console.log(res, 'kek');
+    commit('setBalance', res);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const getFirstPrivateAccount = async ({ state, dispatch }) => {
   if (isEmpty(state.accounts)) {
     await dispatch('defineOnlyV3Accounts');
@@ -399,6 +413,7 @@ export default {
   defineSettings,
   getAccount,
   getAccounts,
+  getBalance,
   getFirstPrivateAccount,
   getSettings,
   defineOnlyV3Accounts,

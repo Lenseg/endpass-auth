@@ -11,9 +11,9 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (!store.getters.isDialog && to.name !== 'Bridge') {
-    return next('bridge');
-  }
+  // if (!store.getters.isDialog && to.name !== 'Bridge') {
+  //   return next('bridge');
+  // }
   return next();
 });
 

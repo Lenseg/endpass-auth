@@ -6,6 +6,7 @@ const { getEnv } = require('./env');
 
 const { NODE_ENV, SOURCE_MAP } = process.env;
 const ENV = getEnv(NODE_ENV);
+console.log(ENV.cryptodata.url, 'kek')
 
 module.exports = {
   baseUrl: '',
@@ -100,6 +101,18 @@ module.exports = {
         pathRewrite: {
           '^/identity': '',
         },
+        cookieDomainRewrite: 'localhost',
+      },
+      [ENV.cryptodata.url]: {
+        target: 'https://cryptodata-dev.endpass.com',
+        pathRewrite: {
+          [ENV.cryptodata.url]: '/api/v1.1',
+        },
+        changeOrigin: true,
+      },
+      '^/https://': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
         cookieDomainRewrite: 'localhost',
       },
     },

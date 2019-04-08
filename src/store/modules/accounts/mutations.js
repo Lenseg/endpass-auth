@@ -16,6 +16,11 @@ const setSentStatus = (state, status) => {
   state.linkSent = status;
 };
 
+const setBalance = (state, balance) => {
+  console.log(balance, 'kek123');
+  state.balance = balance;
+};
+
 const setAccounts = (state, accounts) => {
   state.accounts = isEmpty(accounts) ? [] : [...accounts];
 };

@@ -4,7 +4,9 @@ const infura = {
 const wallet = {
   openUrl: 'https://wallet.endpass.com/#/',
 };
-
+const cryptodata = {
+  url: 'https://cryptodata.endpass.com/api/v1.1'
+};
 const identity = {
   url: 'https://identity.endpass.com',
 };
@@ -26,6 +28,7 @@ module.exports = {
   wallet,
   infura,
   identity,
+  cryptodata,
   hdKeyMnemonic,
   googleClientId,
   gitClientId,

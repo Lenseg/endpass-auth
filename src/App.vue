@@ -1,9 +1,13 @@
 <template>
-  <router-view />
+  <div class="">
+    <router-view />
+    <widget></widget>
+  </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import Widget from '@/components/common/Widget';
 
 export default {
   name: 'App',
@@ -18,6 +22,9 @@ export default {
 
   async created() {
     await this.init(this.$router);
+  },
+  components: {
+    Widget,
   },
 };
 </script>
