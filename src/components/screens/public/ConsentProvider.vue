@@ -80,6 +80,7 @@ export default {
           skip,
           redirect_url,
         } = await this.getConsentDetails(this.queryParamsMap.consent_challenge);
+        alert(redirect_url);
         if (skip) {
           window.location.href = redirect_url;
         }

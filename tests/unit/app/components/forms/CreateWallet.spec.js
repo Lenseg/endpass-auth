@@ -68,7 +68,7 @@ describe('CreateWallet', () => {
     });
 
     it('should switch to seed box', async () => {
-      expect.assertions(3);
+      expect.assertions(2);
 
       expect(wrapper.find('[data-test=seed-phrase]').exists()).toBe(false);
 
@@ -79,11 +79,6 @@ describe('CreateWallet', () => {
 
       wrapper.find('[data-test=define-pwd-form]').trigger('submit');
       await global.flushPromises();
-
-      expect(wrapper.find('[data-test=seed-phrase]').exists()).toBe(false);
-
-      wrapper.vm.$timer.start('seedPhrase');
-      jest.runOnlyPendingTimers();
 
       expect(wrapper.find('[data-test=seed-phrase]').exists()).toBe(false);
     });
