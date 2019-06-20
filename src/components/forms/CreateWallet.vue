@@ -76,6 +76,7 @@ export default {
     passwordConfirm: '',
     password: '',
     seedKey: null,
+    isShowSeed: false,
     isLoading: false,
   }),
 
@@ -99,6 +100,7 @@ export default {
         try {
           this.error = '';
           this.seedKey = await this.createWallet({ password: this.password });
+          this.isShowSeed = true;
         } catch (e) {
           console.error(e);
           this.error = 'Something broken, when trying to create new Wallet';
