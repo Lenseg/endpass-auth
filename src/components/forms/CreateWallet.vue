@@ -34,7 +34,6 @@
             :submit="true"
             type="primary"
             data-test="submit-button"
-            @click="onCreateWallet"
           >
             {{ primaryButtonLabel }}
           </v-button>
@@ -95,6 +94,7 @@ export default {
   methods: {
     ...mapActions(['createWallet', 'setWalletCreated']),
     async onCreateWallet() {
+      console.log('kekek');
       if (this.isPasswordEqual) {
         this.isLoading = true;
         try {
