@@ -77,7 +77,6 @@ import Message from '@/components/common/Message.vue';
 import FormControls from '@/components/common/FormControls.vue';
 import VInput from '@endpass/ui/components/VInput';
 import FormField from '@/components/common/FormField.vue';
-import formMixin from '@/mixins/form';
 
 export default {
   name: 'CreateWalletForm',
@@ -107,8 +106,17 @@ export default {
   methods: {
     ...mapActions(['createWallet', 'setWalletCreated']),
     async onCreateWallet() {
-      if (!this.canSubmit) {
-        return;
+      if (this.isPasswordEqual) {
+        this.isLoading = true;
+        try {
+          this.error = '';
+          this.seedKey = await this.createWallet({ password: this.password });
+        } catch (e) {
+          console.error(e);
+          this.error = 'Something broken, when trying to create new Wallet';
+        }
+        this.isLoading = false;
+        this.setWalletCreated();
       }
 
       this.isLoading = true;
@@ -127,7 +135,7 @@ export default {
     },
   },
 
-  mixins: [formMixin],
+  mixins: [],
 
   components: {
     FormField,

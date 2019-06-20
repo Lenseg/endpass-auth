@@ -74,7 +74,7 @@ describe('CreateWallet', () => {
       expect(wrapper.find('[data-test=seed-phrase]').exists()).toBe(false);
     });
 
-    it('should not switch to seed box, if pwd less 8', async () => {
+    it('should switch to seed box', async () => {
       expect.assertions(2);
 
       expect(wrapper.find('[data-test=seed-phrase]').exists()).toBe(false);
@@ -89,25 +89,6 @@ describe('CreateWallet', () => {
       await global.flushPromises();
 
       expect(wrapper.find('[data-test=seed-phrase]').exists()).toBe(false);
-    });
-
-    it('should validate pwd value and switch to seed box', async () => {
-      expect.assertions(2);
-
-      expect(wrapper.find('[data-test=create-wallet-error]').exists()).toBe(
-        false,
-      );
-
-      wrapper.setData({
-        passwordConfirm: '12345678',
-        password: '12345678',
-      });
-      accountsModule.actions.createWallet.mockResolvedValueOnce('kek');
-
-      await doSubmit();
-      await global.flushPromises();
-
-      expect(wrapper.find('[data-test=seed-phrase]').exists()).toBe(true);
     });
 
     it('should handle error, if create wallet broken', async () => {
