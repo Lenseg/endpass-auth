@@ -1,11 +1,19 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import PasswordForm from '@/components/forms/SignPassword/PasswordForm';
+import setupI18n from '@/locales/i18nSetup';
+
+const localVue = createLocalVue();
+
+const i18n = setupI18n(localVue);
 
 describe('PasswordForm', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(PasswordForm);
+    wrapper = shallowMount(PasswordForm, {
+      localVue,
+      i18n,
+    });
   });
 
   describe('render', () => {
@@ -36,7 +44,7 @@ describe('PasswordForm', () => {
         isLoading: false,
       });
 
-      expect(submitButton.text()).toBe('Apply');
+      expect(submitButton.text()).toBe('Confirm');
       expect(submitButton.attributes().disabled).toBeTruthy();
 
       wrapper.setProps({
@@ -44,7 +52,7 @@ describe('PasswordForm', () => {
       });
       wrapper.setData({ password: 'foo' });
 
-      expect(submitButton.text()).toBe('Apply');
+      expect(submitButton.text()).toBe('Confirm');
       expect(submitButton.attributes().disabled).toBeUndefined();
     });
 

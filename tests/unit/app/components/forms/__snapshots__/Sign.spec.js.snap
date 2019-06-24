@@ -55,7 +55,7 @@ exports[`Sign render should correctly render Sign component 1`] = `
   </form-field-stub>
   <form-controls-stub>
     <v-button-stub disabled="true" type="primary" submit="true" data-test="submit-button">
-      Sign
+      Confirm
     </v-button-stub>
     <v-button-stub data-test="cancel-button">
       Close

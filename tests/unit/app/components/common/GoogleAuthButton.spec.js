@@ -1,10 +1,12 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import GoogleAuthButton from '@/components/common/GoogleAuthButton.vue';
 import Vuex from 'vuex';
+import setupI18n from '@/locales/i18nSetup';
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
+const i18n = setupI18n(localVue);
 
 describe('GoogleAuthButton', () => {
   const auth = {
@@ -44,7 +46,10 @@ describe('GoogleAuthButton', () => {
     describe('without gapi', () => {
       beforeEach(() => {
         window.gapi = null;
-        wrapper = shallowMount(GoogleAuthButton);
+        wrapper = shallowMount(GoogleAuthButton, {
+          localVue,
+          i18n,
+        });
       });
 
       it("should correctly render GoogleAuthButton component empty if auth2 isn't loaded", () => {
@@ -55,7 +60,10 @@ describe('GoogleAuthButton', () => {
     describe('with gapi', () => {
       beforeEach(() => {
         window.gapi = gapi;
-        wrapper = shallowMount(GoogleAuthButton);
+        wrapper = shallowMount(GoogleAuthButton, {
+          localVue,
+          i18n,
+        });
       });
 
       it('should correctly render GoogleAuthButton component if auth2 is loaded', () => {
@@ -84,6 +92,7 @@ describe('GoogleAuthButton', () => {
       wrapper = shallowMount(GoogleAuthButton, {
         localVue,
         store,
+        i18n,
       });
     });
 

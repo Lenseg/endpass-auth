@@ -1,10 +1,12 @@
 import Vuex from 'vuex';
 import { createLocalVue, shallowMount } from '@vue/test-utils';
 import SignPasswordForm from '@/components/forms/SignPassword';
+import setupI18n from '@/locales/i18nSetup';
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
+const i18n = setupI18n(localVue);
 
 describe('SignPasswordForm', () => {
   let store;
@@ -41,6 +43,7 @@ describe('SignPasswordForm', () => {
     wrapper = shallowMount(SignPasswordForm, {
       localVue,
       store,
+      i18n,
     });
   });
 

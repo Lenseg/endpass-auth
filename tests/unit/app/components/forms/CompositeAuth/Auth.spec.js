@@ -1,6 +1,10 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { shallowMount, createLocalVue, mount } from '@vue/test-utils';
 import Auth from '@/components/forms/CompositeAuth/Auth.vue';
 import { IDENTITY_MODE } from '@/constants';
+import setupI18n from '@/locales/i18nSetup';
+
+const localVue = createLocalVue();
+const i18n = setupI18n(localVue);
 
 describe('Auth', () => {
   let wrapper;
@@ -10,6 +14,8 @@ describe('Auth', () => {
       propsData: {
         isInited: true,
       },
+      localVue,
+      i18n,
     });
   });
 
@@ -26,6 +32,8 @@ describe('Auth', () => {
           message: 'foo',
           error: 'bar',
         },
+        localVue,
+        i18n,
       });
 
       expect(wrapper.findAll('[data-test=error-message]').exists()).toBe(true);
@@ -37,6 +45,8 @@ describe('Auth', () => {
           message: 'foo',
           loading: true,
         },
+        localVue,
+        i18n,
       });
 
       const submitButton = wrapper.find('[data-test=submit-button]');
@@ -76,6 +86,8 @@ describe('Auth', () => {
             message: 'foo',
             isInited: true,
           },
+          localVue,
+          i18n,
         });
       });
 

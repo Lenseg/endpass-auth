@@ -11,6 +11,7 @@ import modeService from '@/service/mode';
 import cryptoDataService from '@/service/cryptoData';
 import bridgeMessenger from '@/class/singleton/bridgeMessenger';
 import asyncCheckProperty from '@endpass/utils/asyncCheckProperty';
+import i18n from '@/locales/i18n';
 
 import {
   accountChannel,
@@ -75,7 +76,8 @@ const authWithGitHub = async ({ commit }, code) => {
   try {
     const res = await identityService.authWithGitHub(code);
 
-    if (!res.success) throw new Error(res.message || 'Auth failed!');
+    if (!res.success)
+      throw new Error(res.message || i18n.t('store.auth.authFailed'));
 
     settingsService.clearLocalSettings();
 
@@ -111,7 +113,7 @@ const authWithOauth = async (ctx, { challengeId, password }) => {
     });
   } catch (err) {
     console.error(err);
-    throw new Error('Password is incorrect');
+    throw new Error(i18n.t('store.auth.passwordIncorrect'));
   }
   return res;
 };
@@ -124,7 +126,7 @@ const checkOauthLoginRequirements = async ({ commit }, challengeId) => {
 
     return res;
   } catch (err) {
-    throw new Error('Failed to check Oauth login status');
+    throw new Error(i18n.t('store.auth.failedToCheckStatus'));
   } finally {
     commit('changeLoadingStatus', false);
   }
@@ -175,7 +177,7 @@ const handleAuthRequest = async ({ commit }, { email, request, link }) => {
   try {
     const res = await request;
 
-    if (!res.success) throw new Error('Auth failed!');
+    if (!res.success) throw new Error(i18n.t('store.auth.authFailed'));
 
     settingsService.clearLocalSettings();
 
@@ -210,7 +212,7 @@ const cancelAuth = () => {
   authChannel.put(
     Answer.createFail(
       ERRORS.AUTH_CANCELED_BY_USER,
-      'Auth was canceled by user!',
+      i18n.t('store.auth.authCanceled'),
     ),
   );
 };
@@ -276,7 +278,7 @@ const updateSettings = async ({ state, commit, dispatch }, payload) => {
     bridgeMessenger.send(METHODS.CHANGE_SETTINGS_REQUEST, settingsToSend);
     accountChannel.put(answer);
   } catch (err) {
-    throw new Error('Something went wrong, try again later');
+    throw new Error(i18n.t('global.somethingWrong'));
   } finally {
     commit('changeLoadingStatus', false);
   }

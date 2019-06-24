@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <message>
-      Identity server
+      {{ $t('components.serverModeSelect.identityServer') }}
     </message>
 
     <form-field>
@@ -11,7 +11,7 @@
         :options="availableIdentityServerTypes"
         :items="availableIdentityServerTypes"
         :value="currentIdentityServerType"
-        label="Identity Server"
+        :label="$t('components.serverModeSelect.identityServer')"
         name="currentIdentityServerType"
         data-test="mode-select"
       />
@@ -23,15 +23,19 @@
         key="custom-identity-server"
         v-model="customIdentityServer"
         :disabled="!isInputAllowed"
-        label="Custom Identity Server"
+        :label="$t('components.serverModeSelect.customIdentityServer')"
         data-vv-name="customIdentityServer"
         name="customIdentityServer"
-        placeholder="Custom Identity Server"
-        help="Example: https://yourserver.com/api"
+        :placeholder="$t('components.serverModeSelect.customIdentityServer')"
+        :help="
+          $t('components.serverModeSelect.example') +
+            ': https://yourserver.com/api'
+        "
         data-test="custom-server-input"
       />
       <message>
-        Example: https://yourserver.com/api
+        {{ $t('components.serverModeSelect.example') }}:
+        https://yourserver.com/api
       </message>
     </form-field>
 
@@ -51,7 +55,7 @@
       data-test="submit-button"
       @click="handleSubmit"
     >
-      Confirm
+      {{ $t('global.confirm') }}
     </v-button>
   </div>
 </template>

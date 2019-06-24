@@ -12,7 +12,7 @@
     <template v-if="isDefaultMode">
       <form-field>
         <message data-test="form-message">
-          Log in to your Endpass account to access site actions
+          {{ $t('components.auth.loginToContinue') }}
         </message>
       </form-field>
       <form-field v-if="error">
@@ -31,7 +31,7 @@
             :autofocus="true"
             name="email"
             type="email"
-            placeholder="Enter your email..."
+            :placeholder="$t('components.auth.enterEmail')"
             data-test="email-input"
           />
           <v-button
@@ -60,16 +60,20 @@
       </template>
       <form-controls>
         <v-checkbox v-model="isTermsAccepted">
-          I accept the
+          {{ $t('components.auth.iAccept') }}
           <a
             href="https://endpass.com/terms/"
             target="_blank"
-          >Terms of Service</a>
-          and
+          >{{
+            $t('components.auth.termsOfService')
+          }}</a>
+
+          {{ $t('components.auth.and') }}
           <a
             href="https://endpass.com/privacy/"
             target="_blank"
-          >Privacy Policy</a>.
+          >
+            {{ $t('components.auth.privacyPolicy') }}</a>.
         </v-checkbox>
       </form-controls>
     </template>

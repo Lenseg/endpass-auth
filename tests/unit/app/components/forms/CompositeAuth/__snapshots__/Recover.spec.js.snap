@@ -4,7 +4,7 @@ exports[`Otp render should correctly render component 1`] = `
 <form>
   <form-field-stub>
     <message-stub data-test="form-message">
-      Enter recovery seed phrase of your wallet.
+      Enter recovery seed phrase of your wallet
     </message-stub>
   </form-field-stub>
   <!---->
@@ -13,7 +13,7 @@ exports[`Otp render should correctly render component 1`] = `
   </form-field-stub>
   <form-controls-stub>
     <v-button-stub disabled="true" type="primary" submit="true" data-test="submit-button">
-      Recover access
+      Confirm
     </v-button-stub>
   </form-controls-stub>
 </form>

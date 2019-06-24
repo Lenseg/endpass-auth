@@ -12,7 +12,9 @@
       width="18px"
       height="18px"
     />
-    <span class="google-button__text">Sign in with Google</span>
+    <span class="google-button__text">{{
+      $t('components.googleAuthButton.authWithGoogle')
+    }}</span>
   </button>
 </template>
 

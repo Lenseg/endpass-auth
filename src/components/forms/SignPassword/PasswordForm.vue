@@ -4,7 +4,7 @@
     @submit.prevent="emitSubmit"
   >
     <form-field v-if="requesterUrl">
-      Please apply connect to
+      {{ $t('components.passwordForm.applyConnectTo') }}
       <a
         :href="requesterUrl"
         data-test="requester-url"
@@ -23,14 +23,14 @@
         {{ error }}
       </message>
     </form-field>
-    <form-field :label="passwordInputLabel">
+    <form-field :label="$t('components.passwordForm.walletPassword')">
       <v-input
         v-model="password"
         :autofocus="true"
         :required="true"
         type="password"
         name="password"
-        placeholder="Enter your password..."
+        :placeholder="'components.passwordForm.enterWalletPassword'"
       />
     </form-field>
     <form-controls>
@@ -49,14 +49,14 @@
         data-test="logout-button"
         @click="emitLogout"
       >
-        Logout
+        {{ $t('global.logout') }}
       </v-button>
       <v-button
         :disabled="!closable || isLoading"
         data-test="cancel-button"
         @click="emitCancel"
       >
-        Close
+        {{ $t('global.close') }}
       </v-button>
     </form-controls>
   </form>
@@ -68,6 +68,7 @@ import VButton from '@/components/common/VButton.vue';
 import Message from '@/components/common/Message.vue';
 import FormField from '@/components/common/FormField.vue';
 import FormControls from '@/components/common/FormControls.vue';
+import i18n from '@/locales/i18n';
 
 export default {
   name: 'PasswordForm',
@@ -115,7 +116,9 @@ export default {
 
   computed: {
     primaryButtonLabel() {
-      return !this.isLoading ? 'Apply' : 'Loading...';
+      return !this.isLoading
+        ? i18n.t('global.confirm')
+        : i18n.t('global.loading');
     },
 
     passwordInputLabel() {

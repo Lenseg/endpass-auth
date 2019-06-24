@@ -5,7 +5,7 @@
         data-test="define-pwd-form"
         @submit.prevent="onCreateWallet"
       >
-        <form-field label="Please choose password:">
+        <form-field :label="$t('components.createWallet.choosePass')">
           <v-input
             v-model="password"
             v-validate="'required|min:8'"
@@ -16,7 +16,7 @@
             :autofocus="true"
             required
             type="password"
-            placeholder="Enter password..."
+            :placeholder="$t('components.createWallet.enterPass')"
           />
         </form-field>
         <form-field>
@@ -30,7 +30,7 @@
             required
             :autofocus="true"
             type="password"
-            placeholder="Confirm password..."
+            :placeholder="$t('components.createWallet.confirmPass')"
           />
         </form-field>
         <message
@@ -54,7 +54,7 @@
     </div>
     <div v-else>
       <div class="box">
-        <p>Your wallet recovery phrase</p>
+        <p>{{ $t('components.createWallet.recoveryPhrase') }}</p>
         <br>
         <p
           class="code"
@@ -64,7 +64,7 @@
         </p>
       </div>
       <v-button @click="onContinue">
-        Continue
+        {{ $t('global.continue') }}
       </v-button>
     </div>
   </div>
@@ -77,6 +77,7 @@ import Message from '@/components/common/Message.vue';
 import FormControls from '@/components/common/FormControls.vue';
 import VInput from '@endpass/ui/components/VInput';
 import FormField from '@/components/common/FormField.vue';
+import i18n from '@/locales/i18n';
 
 export default {
   name: 'CreateWalletForm',
@@ -99,7 +100,9 @@ export default {
       return this.password && this.password === this.passwordConfirm;
     },
     primaryButtonLabel() {
-      return this.isLoading ? 'Loading...' : 'Create Wallet';
+      return this.isLoading
+        ? i18n.t('global.loading')
+        : i18n.t('global.confirm');
     },
   },
 
@@ -113,7 +116,7 @@ export default {
           this.seedKey = await this.createWallet({ password: this.password });
         } catch (e) {
           console.error(e);
-          this.error = 'Something broken, when trying to create new Wallet';
+          this.error = i18n.t('components.createWallet.error');
         }
         this.isLoading = false;
         this.setWalletCreated();
@@ -126,7 +129,7 @@ export default {
         this.isShowSeed = true;
       } catch (e) {
         console.error(e);
-        this.error = 'Something broken, when trying to create new Wallet';
+        this.error = i18n.t('components.createWallet.error');
       }
       this.isLoading = false;
     },

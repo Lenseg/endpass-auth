@@ -2,10 +2,12 @@ import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import '@mocks/window';
 import LoginProvider from '@/components/screens/public/LoginProvider';
+import setupI18n from '@/locales/i18nSetup';
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
+const i18n = setupI18n(localVue);
 
 describe('LoginProvider', () => {
   let $router;
@@ -62,6 +64,7 @@ describe('LoginProvider', () => {
     wrapper = shallowMount(LoginProvider, {
       localVue,
       store,
+      i18n,
       mocks: {
         $router,
       },
@@ -73,6 +76,7 @@ describe('LoginProvider', () => {
       wrapper = shallowMount(LoginProvider, {
         localVue,
         store,
+        i18n,
         mocks: {
           $router,
         },
@@ -89,6 +93,7 @@ describe('LoginProvider', () => {
       wrapper = shallowMount(LoginProvider, {
         localVue,
         store,
+        i18n,
         mocks: {
           $router,
         },
@@ -105,6 +110,7 @@ describe('LoginProvider', () => {
       wrapper = shallowMount(LoginProvider, {
         localVue,
         store,
+        i18n,
         mocks: {
           $router,
         },
@@ -126,6 +132,7 @@ describe('LoginProvider', () => {
         wrapper = shallowMount(LoginProvider, {
           localVue,
           store,
+          i18n,
           mocks: {
             $router,
           },
@@ -144,6 +151,7 @@ describe('LoginProvider', () => {
         wrapper = shallowMount(LoginProvider, {
           localVue,
           store,
+          i18n,
           mocks: {
             $router,
           },
@@ -166,6 +174,7 @@ describe('LoginProvider', () => {
         wrapper = shallowMount(LoginProvider, {
           localVue,
           store,
+          i18n,
           mocks: {
             $router,
           },
@@ -180,6 +189,7 @@ describe('LoginProvider', () => {
       wrapper = shallowMount(LoginProvider, {
         localVue,
         store,
+        i18n,
         mocks: {
           $router,
         },

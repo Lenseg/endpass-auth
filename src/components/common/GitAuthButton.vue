@@ -11,7 +11,9 @@
       width="18px"
       height="18px"
     />
-    <span class="github-button__text">Sign in with Github</span>
+    <span class="github-button__text">{{
+      $t('components.gitAuthButton.authWithGitHub')
+    }}</span>
   </button>
 </template>
 
